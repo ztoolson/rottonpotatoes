@@ -7,7 +7,7 @@
     = csrf_meta_tags
 
   %body
-    %h1.title Rotton Potatoes!
+    %h1.title= link_to 'Rotton Potatoes!', root_path
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
