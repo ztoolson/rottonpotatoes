@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.create(movie_params)
     flash[:notice] = "#{@movie.title} successfully created"
-    redirect_to_movies_path
+    redirect_to movie_path(@movie)
   end
 
   def edit
@@ -23,14 +23,14 @@ class MoviesController < ApplicationController
   def update
     @movie = movie_from_params_id.update_attributes(movie_params)
     flash[:notice] = "#{@movie.title} successfully updated"
-    redirect_to_movies_path
+    redirect_to movies_path
   end
 
   def destroy
     @movie = movie_from_params_id
     @movie.destroy
     flash[:notice] = "#{@movie.title} has been deleted"
-    redirect_to_movies_path
+    redirect_to movies_path
   end
 
   private
