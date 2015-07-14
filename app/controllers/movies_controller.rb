@@ -4,7 +4,12 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    if @movie = Movie.find_by_id(params[:id])
+      render :show
+    else
+      flash[:warning] = 'Movie not in database.'
+      redirect_to movies_path
+    end
   end
 
   def new
