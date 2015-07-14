@@ -15,4 +15,5 @@
 
   = f.submit 'Update movie info'
 
+=button_to 'Delete', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }
 = movie_cancel_link(@movie)

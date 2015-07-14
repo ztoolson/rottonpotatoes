@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all.order(:title)
+    sort_column = params[:sort] || :title # default sort by title
+    @movies = Movie.order(sort_column)
   end
 
   def show
