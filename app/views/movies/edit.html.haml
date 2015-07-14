@@ -5,7 +5,7 @@
   = f.text_field :title
 
   = f.label :rating, 'Rating'
-  = f.select :rating, %w(G PG PG-13 R NC-17)
+  = f.select :rating, Movie.ratings_list
 
   = f.label :release_date
   = f.date_select :release_date, start_year: 1930

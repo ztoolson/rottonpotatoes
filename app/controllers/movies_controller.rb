@@ -1,8 +1,15 @@
 class MoviesController < ApplicationController
   helper_method :sort_column, :sort_direction
+
   def index
-    @movies = Movie.order({sort_column => sort_direction})
-  end
+    @ratings = Movie.ratings_list
+
+    if permitted_ratings_params
+      @movies = Movie.where(:rating => permitted_ratings_params).order({sort_column => sort_direction})
+    else
+      @movies = Movie.order({sort_column => sort_direction})
+    end
+  end 
 
   def show
     if @movie = Movie.find_by_id(params[:id])
@@ -45,6 +52,17 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
+  end
+
+  def permitted_ratings_params
+    return unless params[:ratings]
+
+    ratings = []
+    params[:ratings].each do |rating, value| 
+      ratings << rating if Movie.ratings_list.include?(rating)
+    end
+
+    ratings
   end
 
   def sort_column
