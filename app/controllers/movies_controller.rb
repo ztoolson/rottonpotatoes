@@ -4,10 +4,14 @@ class MoviesController < ApplicationController
   def index
     @ratings = Movie.ratings_list
 
-    if permitted_ratings_params
-      @movies = Movie.where(:rating => permitted_ratings_params).order({sort_column => sort_direction})
-    else
+    submitted_ratings = permitted_ratings_params || session[:ratings]
+
+    if submitted_ratings.empty?
+      save_all_ratings_in_session
       @movies = Movie.order({sort_column => sort_direction})
+    else
+      update_ratings_in_session(submitted_ratings)
+      @movies = Movie.where(:rating => submitted_ratings).order({sort_column => sort_direction})
     end
   end 
 
@@ -65,11 +69,19 @@ class MoviesController < ApplicationController
     ratings
   end
 
+  def save_all_ratings_in_session
+    session[:ratings] = Movie.ratings_list
+  end
+
   def sort_column
     %w(title rating release_date).include?(params[:sort]) ? params[:sort] : 'title'
   end
 
   def sort_direction
     %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def update_ratings_in_session(ratings)
+    session[:ratings] = ratings
   end
 end
