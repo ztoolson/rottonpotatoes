@@ -46,7 +46,8 @@ group :development, :test do
   gem 'spring'
 end
 
-group :development do
-  # Use byebug for debugging
-  gem 'byebug'
+group :test do
+  # Behavior Testing with Cucumber
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
