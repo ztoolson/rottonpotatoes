@@ -1,14 +1,19 @@
 %h1 Edit Existing Movie
 
-= form_tag movie_path(@movie), method: :put do
+= form_for @movie, html: { class: 'movie_edit_form' } do |f|
+  = f.label :title, 'Title'
+  = f.text_field :title
 
-  = label :movie, :title, 'Title'
-  = text_field :movie, 'title'
+  = f.label :rating, 'Rating'
+  = f.select :rating, Movie.ratings_list
 
-  = label :movie, :rating, 'Rating'
-  = select :movie, :rating, %w(G PG PG-13 R NC-17)
+  = f.label :release_date
+  = f.date_select :release_date, start_year: 1930
 
-  = label :movie, :release_date, 'Released On'
-  = date_select :movie, :release_date
+  = f.label :description
+  = f.text_area :description
 
-  = submit_tag 'Update Movie Info'
+  = f.submit 'Update movie info'
+
+=button_to 'Delete', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }
+= movie_cancel_link(@movie)

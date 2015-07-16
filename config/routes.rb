@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :movies
-  root :to => redirect('/movies')
+  root 'movies#index'
+#  root :to => redirect('/movies')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
