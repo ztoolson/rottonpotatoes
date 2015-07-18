@@ -1,3 +1,3 @@
-Then /^I should see "(.*)"$/ do |movie|
-  page.should have_content(movie)
+Then /^I should see "(.*)"$/ do |content|
+  expect(page).to have_content(content)
 end

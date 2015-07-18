@@ -7,6 +7,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
     when /^the (RottenPotatoes )?home\spage$/ then '/movies'
+    when /^the (Create New Movie )?page$/ then '/movies/new'
+    when /^the (Men in Black )?movie\spage$/ then '/movies/1'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp.
