@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :movies
   root 'movies#index'
+
+  resources :movies
+  post '/movies/search_tmdb'
 #  root :to => redirect('/movies')
 
   # The priority is based upon order of creation: first created -> highest priority.
