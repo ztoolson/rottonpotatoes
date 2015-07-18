@@ -6,12 +6,12 @@ class MoviesController < ApplicationController
 
     submitted_ratings = permitted_ratings_params || session[:ratings]
 
-    if submitted_ratings.empty?
-      save_all_ratings_in_session
-      @movies = Movie.order({sort_column => sort_direction})
-    else
+    if submitted_ratings
       update_ratings_in_session(submitted_ratings)
       @movies = Movie.where(:rating => submitted_ratings).order({sort_column => sort_direction})
+    else
+      save_all_ratings_in_session
+      @movies = Movie.order({sort_column => sort_direction})
     end
   end 
 
