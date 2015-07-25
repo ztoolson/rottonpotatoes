@@ -27,6 +27,13 @@ When /^(?:|I )follow the "([^"]*)"$/ do |link|
   click_link(link)
 end
 
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
+end
+When /^(?:|I )follow "([^"]*)" again$/ do |link|
+  click_link(link)
+end
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should

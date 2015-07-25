@@ -19,16 +19,22 @@ Feature: display list of movies sorted by different criteria
     | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
     | Chicken Run             | G      | 21-Jun-2000  |
     
-    And I am on the Rotton Potatoes homepage
+    And I am on the RottenPotatoes home page
 
   Scenario: sort movies alphabetically
-    When I follow "Movie Title"
-    # your steps here
+    # Default sorted by title
+    Then "Aladdin" should come before "Chocolat"
+    When I follow "Title" again
+    Then "The Incredibles" should come before "Raiders of the Lost Ark"
     
   Scenario: sort movies in order of release date
     When I follow "Release Date"
-    # your steps here
+    Then "The Terminator" should come before "When Harry Met Sally"
+    When I follow "Release Date" again
+    Then "When Harry Met Sally" should come before "The Terminator"
 
   Scenario: sort movies by rating
     When I follow "Rating"
-    # your steps here
+    Then "Chicken Run" should come before "Amelie"
+    When I follow "Rating" again
+    Then "Amelie" should come before "Chicken Run"
