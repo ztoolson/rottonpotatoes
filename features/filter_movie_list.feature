@@ -19,7 +19,7 @@ Feature: display list of movies filtered by MPAA rating
     | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
     | Chicken Run             | G      | 21-Jun-2000  |
     
-    And I am on the Rotton Potatoes homepage
+    And I am on the RottonPotatoes homepage
 
   Scenario: restrict movies with 'PG' or 'R' ratings
     # enter step(s) to check the 'PG' and 'R' checkboxes
