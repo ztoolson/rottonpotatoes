@@ -19,12 +19,13 @@ Feature: display list of movies filtered by MPAA rating
     | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
     | Chicken Run             | G      | 21-Jun-2000  |
     
-    And I am on the RottonPotatoes homepage
+    And I am on the RottenPotatoes home page
 
   Scenario: restrict movies with 'PG' or 'R' ratings
     # enter step(s) to check the 'PG' and 'R' checkboxes
     # enter step(s) to uncheck all other checkboxes
-    #When I select only "PG, R" checkboxes
+    When I check the following ratings:  PG, R
+    And I uncheck the following ratins: G, PG-13
 
     # enter step to "submit" the search form on the homepage
     #And I press "Refresh"
@@ -37,6 +38,6 @@ Feature: display list of movies filtered by MPAA rating
 
   Scenario: all ratings selected
     # your steps here
-    When I select only "G, PG, PG-13, R, NC-17" checkboxes
+    When I check the following ratings: G, PG, PG-13, R
     And I press "Refresh"
-    Then I should see
+    Then I should see all the movies
