@@ -8,6 +8,18 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
+Then /I should see the following movies/ do |movies_table|
+  movies_table.hashes.each do |movie|
+    expect(page).to have_content(movie['title'])
+  end
+end
+
+Then /I should not see the following movies/ do |movies_table|
+  movies_table.hashes.each do |movie|
+    expect(page).to_not have_content(movie['title'])
+  end
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -39,7 +51,9 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  fail "Unimplemented"
+  number_of_movies_on_page = page.all('table#movies tbody tr').count
+
+  expect(Movie.count).to eq(number_of_movies_on_page)
 end
 
 Then /^I should see "(.*)"$/ do |content|
