@@ -24,9 +24,19 @@ Feature: display list of movies filtered by MPAA rating
   Scenario: restrict movies with 'PG' or 'R' ratings
     # enter step(s) to check the 'PG' and 'R' checkboxes
     # enter step(s) to uncheck all other checkboxes
+    #When I select only "PG, R" checkboxes
+
     # enter step to "submit" the search form on the homepage
+    #And I press "Refresh"
+    
     # enter steps(s) to ensure that PG and R movies are visible
+    #Then I should see
+    
     # enter steps(s) to ensure all other movies are not visible
+    #And I should not see
 
   Scenario: all ratings selected
     # your steps here
+    When I select only "G, PG, PG-13, R, NC-17" checkboxes
+    And I press "Refresh"
+    Then I should see
