@@ -7,6 +7,9 @@
   = f.label :rating, 'Rating'
   = f.select :rating, Movie.ratings_list
 
+  = f.label :director, 'Director'
+  = f.text_field :director
+
   = f.label :release_date
   = f.date_select :release_date, start_year: 1930
 
